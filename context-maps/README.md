@@ -29,14 +29,19 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
   <img src="../context-maps/images/bounded-context-with-same-term-but-different-meaning.png?raw=true" width="480px">
 </p>
 
-而不同的 Bounded Context 邊界彼此溝通時就會需要翻，如下圖：。
+而不同的 Bounded Context 邊界彼此溝通時就會需要翻譯才能銜接，如下圖你會看到 Sales Context 與 Support Context 兩個 Bounded Context 都有各自 Customer 與 Product，但是雙方關注的點以及含義不相同，因此在銜接溝通交換資料時，雙方就會有需要透過一方式翻譯，而這也是等下 Context Maps 惠介紹到的部分。
 
 **<p align="center"><a href="https://martinfowler.com/bliki/BoundedContext.html">From Martin Fowler - Bounded Context</a></p>**
 <p align="center">
   <img src="../context-maps/images/different-bounded-context.png?raw=true" width="480px">
 </p>
 
-## Sub-Domain and Bounded Context Not Enough
+## 只有領域 ( Domain ) 以及限界上下文 ( Bounded Context ) 仍不足夠的理由
+
+藉由上述的方式我們針對所面臨的業務需求，找到這個業務與系統的邊界，然而往往現實中中的業務需求都會有著非常複雜且專門的用詞語描述，所以伴隨著尋找，會不段的切分出許多 Bounded Conytext，但在這個過程中卻非常容易陷入聚焦於一個點，而難以見數又見林。
+
+
+
 
 ## What is Context Map
 
