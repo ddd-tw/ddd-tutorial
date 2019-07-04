@@ -8,7 +8,7 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 
 **<p align="center"><a href="https://www.monkeyuser.com/2018/architecture/">From MonkeyUser.com - Architecure</a></p>**
 <p align="center">
-  <img src="../master/context-maps/images/when-architecure-meet-business-logic?raw=true" width="640px">
+  <img src="../context-maps/images/when-architecure-meet-business-logic.png?raw=true" width="480px">
 </p>
 
 更有可能在工作或是團隊合作時，聽到每個人對於這些業務描述都知道，但是彼此的用語跟思想不一定相同，造成很多溝通甚至開發協作上的困難。
@@ -19,21 +19,21 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 
 **<p align="center">From iDDD - The assessment view of the sample Bounded Contexts in fully aligned Subdomains</p>**
 <p align="center">
-  <img src="../master/context-maps/images/domain-and-bounded-context.png?raw=true" width="640px">
+  <img src="../context-maps/images/domain-and-bounded-context.png?raw=true" width="480px">
 </p>
 
 因此每一個 Bounded Context 會有自己的統一通用語言。而不同的 Bounded Context 也可能會有相同的用詞，例如下圖，但你會知道雖然是不同的 Bounded Context，但彼此的意思不同，一個是指發文的帳號，另一個是指銀行裡可以轉帳存款的帳號。
 
 **<p align="center">From iDDD - Account objects in two different Bounded Contexts have completely different meanings.</p>**
 <p align="center">
-  <img src="../master/context-maps/images/bounded-context-with-same-term-but-different-meaning.png?raw=true" width="640px">
+  <img src="../context-maps/images/bounded-context-with-same-term-but-different-meaning.png?raw=true" width="480px">
 </p>
 
 而不同的 Bounded Context 邊界彼此溝通時就會需要翻，如下圖：。
 
 **<p align="center"><a href="https://martinfowler.com/bliki/BoundedContext.html">From Martin Fowler - Bounded Context</a></p>**
 <p align="center">
-  <img src="../master/context-maps/images/different-bounded-context.png?raw=true" width="640px">
+  <img src="../context-maps/images/different-bounded-context.png?raw=true" width="480px">
 </p>
 
 ## Sub-Domain and Bounded Context Not Enough
