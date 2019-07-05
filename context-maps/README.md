@@ -100,9 +100,15 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 
 而這就像是前面的外部系統一樣，如果今天新的需求要整合 Legacy 系統時，我們是不是有考量這個 Legacy Sytem 與 Bounded Context 的邊界，還有如果要對接等等的問題。
 
+因此，雖然透過 Domain 與 Bounded Context 已經能夠為我們初步從抽象的業務場景描述找到了建模的邊界，但是在戰略設計中仍不夠，因為業務場景可能很龐大，而且協作的過程中會有著團隊文化、組織協作等影響，以及是否有使用外部的系統和 Legacy System 都是會影響的。
 
+所以在 DDD 中還需要透過 Context Maps 綁上述可能會遇到的情況透過在設計這個 Map 時幫助我們找出潛在的因素。
 
-## What is Context Map
+## 所以什麼是 Context Maps 呢
+讓我們來看看 Context Maps 的定義：
+
+> Context Maps could reflect the collaborative  or even organizational teams relationships between different Bounded Contexts in your systems. 
+
 
 ## The Benefit for Drawing Context Map
 
