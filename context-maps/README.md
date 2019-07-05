@@ -115,9 +115,9 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 > 
 > Therefore: Identify each model in play on the project and define its bounded context. This includes the implicit models of non-object-oriented subsystems. Name each bounded context, and make the names part of the ubiquitous language. Describe the points of contact between the models, outlining explicit translation for any communication and highlighting any sharing. Map the existing terrain.
  
-如同維基百科說的他為我們點出了先前提到的各個原因，因此 Context Maps 在這之中扮演銜接 Bounded Context 的橋樑。
+如同維基百科說的他為我們點出了先前提到的各個原因，而 Context Maps 能為我們扮演銜接 Bounded Context 的橋樑，把視野看得更全面。
 
-Context Maps 能為我們找出 Bounded Context 之間的協作關係，或者可以更一步地說反映出組織、團隊或者與合作夥伴之間的協作關係，透過 Context Maps 我們能夠把原本存在的隱藏成本凸顯出來，並進一步的從溝通面和程式協作面起到保護的作用，例如事先找出會對連接串接整合的區塊，設計出保護層或定義不同之間統一通用語言的翻譯層。
+Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可以更一步地說「反映出組織、團隊或者與合作夥伴之間的在協作上或系統銜接上關係」，透過 Context Maps 我們能夠把原本存在的隱藏成本凸顯出來，並進一步的從溝通面和程式協作面起到保護的作用，例如事先找出會對連接串接整合的區塊，設計出保護層或定義不同之間統一通用語言的翻譯層。
 
 <p align="center">
   <img src="../context-maps/images/Context-map-translation-map.png?raw=true" width="480px">
@@ -135,13 +135,14 @@ Context Maps 能為我們找出 Bounded Context 之間的協作關係，或者�
 
 所謂的 **上游 ( Upstream )** 表示的是這個 Bounded Context 與會對於其他的 Bounded Context 而言在業務場景上是一個供應方，需要仰賴這個業務場景所設計出的系統來運作服務的某部分；而在系統層面上可能是一個 API 開放方；若從團隊協作上思考，該上游團隊可能是需要最優先提供服務的團隊，但相對的其他下游團隊可能都需要配合該上游團隊。
 
-而所謂的下游 **( Downstream )** 表示這個 Bounded Context 與會對於其他的 Bounded Context 在業務場景上是一個需求方，他需要仰賴其他的上游 Bounded Context 來使自己的業務場景與服務運作正常，也可能伴隨著上游出了狀況，下游也出了狀況；如果從系統面來想，他就是一個需要請求外部服、API 的系統；若從團隊協作上思考，該下游團隊可能需要時常配合上游團隊，也可能受上游團隊的協作與溝通影響自身開發與交付的時程。
+而所謂的 **下游 ( Downstream )** 表示這個 Bounded Context 與會對於其他的 Bounded Context 在業務場景上是一個需求方，他需要仰賴其他的上游 Bounded Context 來使自己的業務場景與服務運作正常，也可能伴隨著上游出了狀況，下游也出了狀況；如果從系統面來想，他就是一個需要請求外部服、API 的系統；若從團隊協作上思考，該下游團隊可能需要時常配合上游團隊，也可能受上游團隊的協作與溝通影響自身開發與交付的時程。
 
 目前這個標示上下游的 Context Maps 方式雖然只是一個初步的畫法，但是你會發現只是短短的繪製出這些圖示，便能進一步讓團隊與領域專家在思考與討論業務需求時，可以看到更多的面向，發現更多潛在的隱藏協作細節與成本，或是釐清可能有誤的解讀，同時可以提少準備預防可能的問題發生。
 
-## The Benefit for Drawing Context Map
+## 繪製 Context Maps 的一些小細節
+另外在繪製 Context Maps 時有一些需要注意的地方，Context Maps 是為我們捕捉「當下」與領域專家討論分析的樣貌、現在與合作夥伴的關係、與團隊的關係，所以是目前的狀態。因此 Context Maps 是需要不斷的更新，伴隨著進一步的進入設計、項目需求變更或是添加需求項目、其他 Bounded Context 的協作團隊異動、或是有了新的領域專家協助等等，都有可能改變原先的思維與設計。
 
-
+另外除了在 Context Maps 中繪製與其他 Bounded Contexts 的邊界、上下游關係以及點出需要鞋街翻譯的區塊外，可以輔助我們捕捉更明確的方式是伴隨後續更深入的分析與進入 DDD 中的戰術建模 (Tactical Modeling) 後，都可以把更加細節的資訊放進來，例如 Aggregate (聚合)、系統的 Module (模組) 設計圖、團隊資訊，如此便能幫助我們的 Context Maps 從更多細節或面向全面思考。
 
 
 ## The Role of Relationship in Context Map
