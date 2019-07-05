@@ -140,9 +140,16 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 目前這個標示上下游的 Context Maps 方式雖然只是一個初步的畫法，但是你會發現只是短短的繪製出這些圖示，便能進一步讓團隊與領域專家在思考與討論業務需求時，可以看到更多的面向，發現更多潛在的隱藏協作細節與成本，或是釐清可能有誤的解讀，同時可以提少準備預防可能的問題發生。
 
 ## 繪製 Context Maps 的一些小細節
-另外在繪製 Context Maps 時有一些需要注意的地方，Context Maps 是為我們捕捉「當下」與領域專家討論分析的樣貌、現在與合作夥伴的關係、與團隊的關係，所以是目前的狀態。因此 Context Maps 是需要不斷的更新，伴隨著進一步的進入設計、項目需求變更或是添加需求項目、其他 Bounded Context 的協作團隊異動、或是有了新的領域專家協助等等，都有可能改變原先的思維與設計。
+此外，在繪製 Context Maps 時有一些需要注意的小地方與一些 Tips，透過這些細節與建議，除了能幫助團隊在繪製 Context Maps 時有正確的觀念外，也能更加完善。
 
-另外除了在 Context Maps 中繪製與其他 Bounded Contexts 的邊界、上下游關係以及點出需要鞋街翻譯的區塊外，可以輔助我們捕捉更明確的方式是伴隨後續更深入的分析與進入 DDD 中的戰術建模 (Tactical Modeling) 後，都可以把更加細節的資訊放進來，例如 Aggregate (聚合)、系統的 Module (模組) 設計圖、團隊資訊，如此便能幫助我們的 Context Maps 從更多細節或面向全面思考。
+### 1. 只需捕捉「當下」，再漸進式的隨變化改良 Context Maps 
+在繪製 Context Maps 時有一些需要注意的地方，Context Maps 是為我們捕捉「當下」與領域專家討論分析的樣貌、現在與合作夥伴的關係、與團隊的關係，所以是目前的狀態。因此 Context Maps 是需要不斷的更新，伴隨著進一步的進入設計、項目需求變更或是添加需求項目、其他 Bounded Context 的協作團隊異動、或是有了新的領域專家協助等等，都有可能改變原先的思維與設計。
+
+### 2. 可以適當的加入更多訊息使 Context Maps 更全面完善
+除了在 Context Maps 中繪製與其他 Bounded Contexts 的邊界、上下游關係以及需要銜接翻譯的部分外，可以輔助我們捕捉更明確的方式是伴隨後續更深入的分析與進入 DDD 中的戰術建模 (Tactical Modeling) 後，都可以把更加細節的資訊放進來，例如 Aggregate (聚合)、系統的 Module (模組) 設計圖、團隊的分佈訊息，如此便能幫助我們的 Context Maps 有更多的細節來面向全面思考。
+
+### 3. 為你的 Context Maps 提供一個團隊能共同查閱的位置
+
 
 
 ## The Role of Relationship in Context Map
@@ -153,3 +160,5 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 
 
 ## 參考資料
+1. [Domain-driven design - Wikipedia](https://en.wikipedia.org/wiki/Domain-driven_design)
+2. [Strategic Domain Driven Design with Context Mapping](https://www.infoq.com/articles/ddd-contextmapping/)
