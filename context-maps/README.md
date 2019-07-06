@@ -9,36 +9,61 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 <p align="center">
   <img src="../context-maps/images/when-architecure-meet-business-logic.png?raw=true" width="480px">
 </p>
-<p align="center"><a href="https://www.monkeyuser.com/2018/architecture/">Architecure - From MonkeyUser.com</a></p>
+<p align="center"><span style="font-style:italic;"><a href="https://www.monkeyuser.com/2018/architecture/">Architecure - From MonkeyUser.com</a></span></p>
 
 更有可能在工作或是團隊合作時，聽到每個人對於這些業務描述都知道，但是彼此的用語跟思想不一定相同，造成很多溝通甚至開發協作上的困難。
 
-所以在 DDD 之中，Bounded Context 便是一個用來幫助我們把業務需求到程式碼這過程中，拉近的一個重要概念與思想。在 DDD 中我們會與領域專家 ( Domain Expert ) 針對這些業務需求解析，並定義出哪些是實際上與業務需求相關的問題空間 (Problem Space)，並接著區分出各業務子領域，什麼是與你產品最有價值的核心子領域（ Core Sub-Domain )、協助你支撐這個核心子領域所需要的其他服務 ( Support Sub-Domain )，以及可以抽離你產品不需要自己開發，從外部購買的功能服務 - 通用子領域 ( Generic Sub-Domain )。
+所以在 DDD 之中 Bounded Context 便是一個用來幫助我們把業務需求到程式碼這過程中，拉近的一個重要概念與思想。我們會與領域專家 ( Domain Expert ) 針對這些業務需求解析，並找出、定義出哪些是實際上與業務需求相關的需要解決的問題，我們稱為**問題空間 (Problem Space)**。
 
-補充一下：這些領域專家可能直接是需求提供方（如客戶），或是團隊、企業組織內部對該場景的專業領域最熟悉的人。
+*補充一下：這些領域專家可能直接是需求提供方（如客戶）、團隊成員或企業組織內部對該場景的專業領域最熟悉的人。*
 
-再進一步找出 Bounded Context：透過藉由討論時訂出團隊通用且理解的統一語言用詞 ( Ubiquitous Language )，藉著這些用詞劃分出這些上述子領域的邊界，訂出解決空間 ( Solution Space )，於是這些 Bounded Context 都會有著自己的通用語言以及自己的邊界，並協助在往後的實作建模，而這些邊界也會是你往後各個系統的邊界與其他的 Bounded Context 會區分開來。
+這個過程中會因為討論與釐清需求，團隊會提問而領域專家會開始解說，於是便會開始制定、歸納出一些團隊都能理解的詞彙，也就是一套團隊通用且能理解的**通用語言 ( Ubiquitous Language )**，而這些詞彙需要讓團隊有共識與相同認知，同時在往後的討論或進入到實作開發中都以這些詞彙作用語，甚至在系統的建模中也會需要實踐使用。
+
+<p align="center">
+  <img src="../context-maps/images/ubiquitous-language.png?raw=true" width="480px">
+</p>
+<p align="center"><span style="font-style:italic;"><a href="https://www.infoq.com/articles/ddd-contextmapping/">Ubiquitous Language - Strategic Domain Driven Design with Context Mapping</a></span></p>
+
+有了問題空間之後，接著對這個空間中的業務需求區分出各業務子領域，找出什麼是與你產品最有價值或是可以為產品帶來收益的部分與區域 - **核心子領域（ Core Sub-Domain )**、協助你支撐這個核心子領域所需要的其他服務 - **支撐子領域 ( Support Sub-Domain )**，以及可以抽離你產品不需要自己開發，從外部購買就有的基礎功能服務 - **通用子領域 ( Generic Sub-Domain )**。
+
+<p align="center">
+  <img src="../context-maps/images/problem-space.png?raw=true" width="480px">
+</p>
+<p align="center"><span style="font-style:italic;">DDD patterns that are applicable to the problem space.<br/>From Patterns, Principles, and Practices of Domain-Driven Design</span></p>
+
+再次藉著**通用語言 ( Ubiquitous Language )** 與團隊反覆討論與提煉，開始明確劃分出這些上述子領域的邊界，找出可以對應建模系統的**解決空間 ( Solution Space )**，也就是我們所需要的**限界上下文（ Bounded Context ）**
+
+<p align="center">
+  <img src="../context-maps/images/solution-space.png?raw=true" width="480px">
+</p>
+<p align="center"><span style="font-style:italic;">DDD patterns that are applicable to the solution space.<br/>From Patterns, Principles, and Practices of Domain-Driven Design</span></p>
+
+於是這些有著通用語言在內的邊界區域便是 Bounded Context，每個 Bounded Context 都會有著自己的通用語言以及自己的邊界。在往後的實作建模中，這些邊界也會是與各個其他系統的邊界，其他的系統也會有自己的 Bounded Context。
+
+如下圖是一個團隊協作專用的敏捷專案管理系統，該系統的業務場景 Bounded Context 中，因為敏捷專案管理是該產品的核心價值也是賣點，便是歸類 Core Sub-Domain；而團隊協作是支撐敏捷專案功能區塊與業務場景，所以是 Support Sub-Domain，但未來不排除可能會成為 Core Sub-Domain；但身份識別與角色權限就屬於相對基礎的建設服務與一般任何系統都會有的場景，所以歸類在通用子領域，也不排除可以使用外部服務，如整合 SSO 服務商。
 
 <p align="center">
   <img src="../context-maps/images/domain-and-bounded-context.png?raw=true" width="480px">
 </p>
-<p align="center">The Subdomains and Bounded Contexts<br/>From Implementing Domain-Driven Design</p>
+<p align="center"><span style="font-style:italic;">The Subdomains and Bounded Contexts<br/>From Implementing Domain-Driven Design</span></p>
 
-因此每一個 Bounded Context 會有自己的統一通用語言。而不同的 Bounded Context 也可能會有相同的用詞，例如下圖雖然是不同的 Bounded Context，但彼此對於 Account 所表達的含義卻不同，在 Literary Context 中的 Account 所表達的是指可以留言發文的帳號，而在 Banking Context 中的 Account 卻是指銀行中的帳戶，具有存款、提款、轉帳等行為的帳號。
+該案例中每個 Domain 都自成一個 Bounded Context，但現實中不一定會如此，在理想上一個 Domain 可以的話對應到一個 Bounded Context。
+
+另外，不同的 Bounded Context 也可能會有相同的用詞，例如下圖雖然是不同的 Bounded Context，但彼此對於 Account 所表達的含義卻不同，在 Literary Context 中的 Account 所表達的是指可以留言發文的帳號，而在 Banking Context 中的 Account 卻是指銀行中的帳戶，具有存款、提款、轉帳等行為的帳號。
 
 <p align="center">
   <img src="../context-maps/images/bounded-context-with-same-term-but-different-meaning.png?raw=true" width="480px">
 </p>
 <p align="center">Account objects in two different Bounded Contexts<br/>From Implementing Domain-Driven Design</p>
 
-而對於不同的 Bounded Context 所構成的邊界，當彼此溝通整合時，會需要翻譯彼此不同的 Context 內的語意，如下圖的例子，你會看到 Sales Context 與 Support Context 兩個 Bounded Context 都有各自 Customer 與 Product，但是雙方關注的點以及含義不相同，因此在銜接溝通交換資料時，雙方就會有需要透過一方式翻譯。
+而對於不同的 Bounded Context 所構成的邊界，當彼此溝通整合時，會需要翻譯彼此不同的 Context 內的語意，如下圖的例子，你會看到 Sales Context 與 Support Context 兩個 Bounded Context 都有各自 Customer 與 Product，但是雙方關注的點和業務細節不同，因此含義上不相同，因此在銜接溝通交換資料時，雙方就會有需要做一層翻譯。
 
 <p align="center">
   <img src="../context-maps/images/different-bounded-context.png?raw=true" width="480px">
 </p>
 <p align="center"><a href="https://martinfowler.com/bliki/BoundedContext.html">Bounded Context - From Martin Fowler</a></p>
 
-## 只有領域 ( Domain ) 以及限界上下文 ( Bounded Context ) 仍不足夠理解
+## 為何領域 ( Domain ) 以及限界上下文 ( Bounded Context ) 仍不足
 
 藉由領域 ( Domain ) 以及限界上下文 ( Bounded Context ) 雖能為我們定義業務需求，找到這個業務與系統建模的邊界，然而往往現實中中並非如此的單純，你可能會面臨一些情境導致你難以進行分析、或分析的結果是事實有落差：
 
@@ -52,6 +77,11 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 
 ### 2. 組織的文化與企業內部的運作模式會影響 Bounded Context 真實性
 這句是什麼意思呢？其實當團隊面臨業務情境與需求時，往往也會找出的許多 Bounded Contexts，但這確不太可能會由一個團隊全部完成，而會交由其他的團隊來開發，這也是在企業中常見的行為。
+
+<p align="center">
+  <img src="../context-maps/images/bounded-context-with-different-teams.png?raw=true" width="480px">
+</p>
+<p align="center"><a href="https://www.infoq.com/articles/ddd-contextmapping/">Different teams with different bounded contexts - Strategic Domain Driven Design with Context Mapping</a></p>
 
 在這個時候團隊間的合作關係模式往往會因為組織的文化或是組織內對團隊間的評價地位，間接影響到跨團隊的協作溝通與開發進展，而這些在尋找 Bounded Context 時也往往難以看見。而這些現象在 DDD 中的戰略設計都是不可忽略的。
 
@@ -68,7 +98,7 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 承第二點，所以越龐大的組織，或龐大的開發團隊，會對於 Bounded Contexts 共同協作開發上也增加困難度。著名的[康威定律 (Conway's Law)](https://zh.wikipedia.org/wiki/%E5%BA%B7%E5%A8%81%E5%AE%9A%E5%BE%8B)中也提過組織的運作與複雜度往往與系統架構或系統的設計有著關聯性，因此這些現象也是需要與多個團隊共同協作多個 Bounded Contexts 需要考量進去的。
 
 <p align="center">
-  <img src="../context-maps/images/bounded-context-multi-teams.png?raw=true" width="480px">
+  <img src="../context-maps/images/bounded-context-huge-organization.png?raw=true" width="480px">
 </p>
 <p align="center">Huge company and teams - From internet</p>
 
@@ -117,14 +147,16 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
  
 如同維基百科說的他為我們點出了先前提到的各個原因，而 Context Maps 能為我們扮演銜接 Bounded Context 的橋樑，把視野看得更全面。
 
-Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可以更一步地說「反映出組織、團隊或者與合作夥伴之間的在協作上或系統銜接上關係」，透過 Context Maps 我們能夠把原本存在的隱藏成本凸顯出來，並進一步的從溝通面和程式協作面起到保護的作用，例如事先找出會對連接串接整合的區塊，設計出保護層或定義不同之間統一通用語言的翻譯層。
+Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可以更一步地說「反映出組織、團隊或者與合作夥伴之間的在協作上或系統銜接整合上的關係」，透過 Context Maps 我們能夠把原本存在的隱藏成本與瓶頸凸顯出來，並進一步的從溝通面和系統協作面起到保護的作用，例如事先找出會對連接串接整合的區塊，設計出保護層或定義不同之間統一通用語言的翻譯層。
 
 <p align="center">
   <img src="../context-maps/images/Context-map-translation-map.png?raw=true" width="480px">
 </p>
 <p align="center">Context Maps translation mapping<br/>From Patterns, Principles, and Practices of Domain-Driven Design</p>
 
-### 初步的 Context Maps
+不過 Context Maps 並不是一種企業架構，也不是系統拓墣圖。我們可以這麼定位它 — *Context Maps 是一種高層次抽象的架構分析，能指出整合上的瓶頸、體現出組織的動態，並幫助我們識別出有礙項目進展的管理問題。*
+
+### 初步繪製的 Context Maps
 
 而一個初步簡易的 Context Maps 會如下圖，在圖中你會看見 Context Maps 彼此之間透過線條連起來，並且標明了 `U` 跟 `D`，這個 `U` 跟 `D` 分別代表了 **上游 ( Upstream )** 與 **下游 ( Downstream )**，也就是我們可以透過上游/下游來表達出各個 Bounded Context 之間的初步關係，這些關係也反映出了團隊以及業務場景之間的協作關係。
 
@@ -146,10 +178,16 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 在繪製 Context Maps 時有一些需要注意的地方，Context Maps 是為我們捕捉「當下」與領域專家討論分析的樣貌、現在與合作夥伴的關係、與團隊的關係，所以是目前的狀態。因此 Context Maps 是需要不斷的更新，伴隨著進一步的進入設計、項目需求變更或是添加需求項目、其他 Bounded Context 的協作團隊異動、或是有了新的領域專家協助等等，都有可能改變原先的思維與設計。
 
 ### 2. 可以適當的加入更多訊息使 Context Maps 更全面完善
-除了在 Context Maps 中繪製與其他 Bounded Contexts 的邊界、上下游關係以及需要銜接翻譯的部分外，可以輔助我們捕捉更明確的方式是伴隨後續更深入的分析與進入 DDD 中的戰術建模 (Tactical Modeling) 後，都可以把更加細節的資訊放進來，例如 Aggregate (聚合)、系統的 Module (模組) 設計圖、團隊的分佈訊息，如此便能幫助我們的 Context Maps 有更多的細節來面向全面思考。
+除了在 Context Maps 中繪製 Bounded Contexts 的邊界、上下游關係以及需要銜接翻譯的部分外，也可以把一些特定的訊息放入進來，例如我們希望讓 Context Maps 中各個 Bounded Context 的內部更加清晰一些，可以放入後續做戰術建模 (Tactical Modeling) 時獲得的有用細節訊息（如 Aggregate (聚合)、系統的 Module (模組) 設計圖），或是放入不同 Bounded Contexts 負責的團隊資訊（如位置資訊，溝通窗口、需要的內對接業務的資訊）。
 
-### 3. 為你的 Context Maps 提供一個團隊能共同查閱的位置
+這過這些方面的資訊，能為我們從不同的角度來思考，並且這個更新後的 Context Maps 也能協助我們捕捉更明確業務場景。
 
+但是這裡也要注意拿捏資訊是否是必要的，以及是否太過細緻、繁瑣或不重要的細節，因為 Context Maps 主要是用來幫助我們交流，已全面且抽象的角度看待業務場景、整合的瓶頸、與組織間的相互關係，所以只需要放入對交流已有價值的資訊即可。
+
+### 3. 提供團隊之間能共同瀏覽 Context Maps 的位置
+在討論、繪製或更新 Context Maps 的過程中，可以各次的訊息與細節都共同放在相同的位置保存或提供團隊觀看，你可以選擇採用文件化、並把討論中所用到的素材整理擺放到雲端保存，如 Wiki，而這樣的形式非常適合地理位置分散或遠端的團隊模式。
+
+不過若團隊能聚在一起的話，更鼓勵採用如看板方法、User Story Mapping 方式把 Context Maps 與其細節訊息用文字、便利貼的形式共同貼在白板或牆上，方便團隊隨時能共觀看討論，也能避免沈入系統的文件大海中，找詢問文件的步驟越多，總容易使人懶得去翻開。
 
 
 ## The Role of Relationship in Context Map
