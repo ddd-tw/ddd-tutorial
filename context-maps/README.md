@@ -199,11 +199,48 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 </p>
 <p align="center">Real World Relationship - From Internet</p>
 
-而這些關係也是可以透過繪製 Context Maps 表達呈現出來的，在 DDD 中把 Context Maps 的關係稱作 Relationship Patterns，並分成「組織關係」以及「整合關係」兩類，以下我們分別介紹。
+而這些關係也是可以透過繪製 Context Maps 表達呈現出來的，在 DDD 中把常見的幾種 Context Maps 關係稱作關係模式 ( Relationship Patterns )，這些關係模式包含了組織協作關係以及系統整合關係，以下我們分別介紹。
 
-###  組織關係模式
+### 組織協作關係模式
 
-###  整合關係模式
+#### 1. 夥伴關係 ( Partnership )
+當兩個團隊彼此負責不同的 Bounded Contexts 與各自的業務場景，但在會彼此業務相連交互的場景需求上願意一起互相討論溝通協助，一起朝相同的交付目標前進，並制訂出一個雙方可行的開發方案與系統整合管理，這個現場就會稱做夥伴關係 ( Partnership )。因為雙方是平等關係、相同的地位，因此並**沒有區分上游與下游的關係**。
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-partnership.png?raw=true" width="320px">
+</p>
+<p align="center">Partnership - From Internet</p>
+
+Partnership 的合作可以涵蓋技術介面、API 接口或共同使用的功能，以便滿足兩個團隊的利益與目標。從組織上的角度來看，可以在團隊之間協調系統部署，以便在需要時部署必要的接口和聯繫點。
+
+#### 2. 客戶與供應方 ( Customer － Supplier )
+當負責不同 Bounded Contexts 的團隊之間屬於上游的關係時，
+
+#### 3. 尊奉者 ( Conformist )
+
+### 系統整合關係模式
+
+#### 1. 共享內核 ( Shared Kernel )
+當不同的團隊在同一個系統的應用程式中有彼此各自的 Bounded Context 與業務場景，但卻在程式中有許多的領域概念和邏輯有互相交互時，甚至有相同的模型 Model 共用時，便會稱作共享內核 ( Shared Kernel )。
+
+如此下圖顯示 ERP 系統包含共享 Employee Model 的工資表 ( Payroll ) Context 與人力資源 ( Human Resource ) Context，便是共享內核 ( Shared Kernel )。
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-sharedkernel.png?raw=true" width="480px">
+</p>
+<p align="center">Shared Kernel<br/>From Patterns, Principles, and Practices of Domain-Driven Design</p>
+
+在共享內核 ( Shared Kernel ) 的模式下會需要共享一部分模型 Models 來指定一個顯示的邊界，並且在沒有和其他團隊協調的情況下，是不能改變其共享內核 ( Shared Kernel ) 模型與程式碼。
+
+而這樣的模型和程式碼的共享將產生一種緊密的依賴關係，不一定比較好。那你可能會問這樣什麼時候適合使用共享內核呢？ 
+
+如果在做戰略設計時發現同一個子域 ( Sub-Domain ) 中有兩個 Bounded Contexts 時，且初期業務場景仍不明確，可以先採用此種模式來開發。
+
+但當團隊在兩個 Bounded Contexts 之間採用共享內核 ( Shared Kernel ) 後，則會建議團隊以夥伴關係 ( Partnership ) 來協作與執行，未來若發現業務明確且複雜時，可以再以共享內核的模型邊界拆分出去。
+
+
+
+
 
 ## The Example of Relationship of Context Map 
 
