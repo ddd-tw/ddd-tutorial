@@ -158,7 +158,7 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 
 ### 初步繪製的 Context Maps
 
-而一個初步簡易的 Context Maps 會如下圖，在圖中你會看見 Context Maps 彼此之間透過線條連起來，並且標明了 `U` 跟 `D`，這個 `U` 跟 `D` 分別代表了 **上游 ( Upstream )** 與 **下游 ( Downstream )**，也就是我們可以透過上游/下游來表達出各個 Bounded Context 之間的初步關係，這些關係也反映出了團隊以及業務場景之間的協作關係。
+而一個初步簡易的 Context Maps 會如下圖，在圖中你會看見 Context Maps 彼此之間透過線條連起來，並且標明了 `U` 跟 `D`，這個 `U` 跟 `D` 分別代表了 **上游 ( Upstream )** 與 **下游 ( Downstream )**，也就是我們可以透過上游/下游來表達出各個 Bounded Context 之間的初步關係，這些關係也反映出了團隊以及業務場景之間的協作關係，當然還有建模之後在系統面上互動的關係。
 
 <p align="center">
   <img src="../context-maps/images/context-maps-upstream-downstream.png?raw=true" width="480px">
@@ -189,10 +189,21 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 
 不過若團隊能聚在一起的話，更鼓勵採用如看板方法、User Story Mapping 方式把 Context Maps 與其細節訊息用文字、便利貼的形式共同貼在白板或牆上，方便團隊隨時能共觀看討論，也能避免沈入系統的文件大海中，找詢問文件的步驟越多，總容易使人懶得去翻開。
 
+## 挖掘 Context Maps 中更細緻的關係
+在介紹 Context Maps 以及繪製 Context Maps 時，我們提到了上游 `U` 與下游 `D` 能夠為描述並發現每個 Bounded Contexts 彼此之間的關係，這些關係反映出了團隊以及業務場景之間的協作關係，還有建模之後在系統面上互動的關係。
 
-## The Role of Relationship in Context Map
+然而這個上下游只是初步的 Context Maps ，就像我們在真實生活中的關係一樣其實可能是非常的複雜的，即便是上游與下游也可能包含了不同程度的關係。
 
-## The Relationship Pattern of Context Map 
+<p align="center">
+  <img src="../context-maps/images/realworld-relationship.png?raw=true" width="480px">
+</p>
+<p align="center"><span style="font-style:italic;">Real World Relationship - From Internet</span></p>
+
+而這些關係也是可以透過繪製 Context Maps 表達呈現出來的，在 DDD 中把 Context Maps 的關係稱作 Relationship Patterns，並分成「組織關係」以及「整合關係」兩類，以下我們分別介紹。
+
+###  組織關係模式
+
+###  整合關係模式
 
 ## The Example of Relationship of Context Map 
 
