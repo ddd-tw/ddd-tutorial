@@ -9,7 +9,7 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 <p align="center">
   <img src="../context-maps/images/when-architecure-meet-business-logic.png?raw=true" width="480px">
 </p>
-<p align="center"><span style="font-style:italic;"><a href="https://www.monkeyuser.com/2018/architecture/">Architecure - From MonkeyUser.com</a></span></p>
+<p align="center"><a href="https://www.monkeyuser.com/2018/architecture/">Architecure - From MonkeyUser.com</a></p>
 
 更有可能在工作或是團隊合作時，聽到每個人對於這些業務描述都知道，但是彼此的用語跟思想不一定相同，造成很多溝通甚至開發協作上的困難。
 
@@ -22,21 +22,21 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 <p align="center">
   <img src="../context-maps/images/ubiquitous-language.png?raw=true" width="480px">
 </p>
-<p align="center"><span style="font-style:italic;"><a href="https://www.infoq.com/articles/ddd-contextmapping/">Ubiquitous Language - Strategic Domain Driven Design with Context Mapping</a></span></p>
+<p align="center"><a href="https://www.infoq.com/articles/ddd-contextmapping/">Ubiquitous Language - Strategic Domain Driven Design with Context Mapping</a></p>
 
 有了問題空間之後，接著對這個空間中的業務需求區分出各業務子領域，找出什麼是與你產品最有價值或是可以為產品帶來收益的部分與區域 - **核心子領域（ Core Sub-Domain )**、協助你支撐這個核心子領域所需要的其他服務 - **支撐子領域 ( Support Sub-Domain )**，以及可以抽離你產品不需要自己開發，從外部購買就有的基礎功能服務 - **通用子領域 ( Generic Sub-Domain )**。
 
 <p align="center">
   <img src="../context-maps/images/problem-space.png?raw=true" width="480px">
 </p>
-<p align="center"><span style="font-style:italic;">DDD patterns that are applicable to the problem space.<br/>From Patterns, Principles, and Practices of Domain-Driven Design</span></p>
+<p align="center">DDD patterns that are applicable to the problem space.<br/>From Patterns, Principles, and Practices of Domain-Driven Design</p>
 
 再次藉著**通用語言 ( Ubiquitous Language )** 與團隊反覆討論與提煉，開始明確劃分出這些上述子領域的邊界，找出可以對應建模系統的**解決空間 ( Solution Space )**，也就是我們所需要的**限界上下文（ Bounded Context ）**
 
 <p align="center">
   <img src="../context-maps/images/solution-space.png?raw=true" width="480px">
 </p>
-<p align="center"><span style="font-style:italic;">DDD patterns that are applicable to the solution space.<br/>From Patterns, Principles, and Practices of Domain-Driven Design</span></p>
+<p align="center">DDD patterns that are applicable to the solution space.<br/>From Patterns, Principles, and Practices of Domain-Driven Design</p>
 
 於是這些有著通用語言在內的邊界區域便是 Bounded Context，每個 Bounded Context 都會有著自己的通用語言以及自己的邊界。在往後的實作建模中，這些邊界也會是與各個其他系統的邊界，其他的系統也會有自己的 Bounded Context。
 
@@ -45,7 +45,7 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 <p align="center">
   <img src="../context-maps/images/domain-and-bounded-context.png?raw=true" width="480px">
 </p>
-<p align="center"><span style="font-style:italic;">The Subdomains and Bounded Contexts<br/>From Implementing Domain-Driven Design</span></p>
+<p align="center">The Subdomains and Bounded Contexts<br/>From Implementing Domain-Driven Design</p>
 
 該案例中每個 Domain 都自成一個 Bounded Context，但現實中不一定會如此，在理想上一個 Domain 可以的話對應到一個 Bounded Context。
 
@@ -116,7 +116,7 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 <p align="center">
   <img src="../context-maps/images/bounded-context-external-system.png?raw=true" width="480px">
 </p>
-<p align="center">Connect external system - From tnternet</p>
+<p align="center">Connect external system - From Internet</p>
 
 這也是需要在做戰略設計時應該考量的面向，然而只專注在 Bounded Contexts 的分析時往往不一定會去考量這件事。
 
@@ -128,7 +128,7 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 <p align="center">
   <img src="../context-maps/images/bounded-context-legacy-system.png?raw=true" width="480px">
 </p>
-<p align="center">Legacy system - From tnternet</p>
+<p align="center">Legacy system - From Internet</p>
 
 而這就像是前面的外部系統一樣，如果今天新的需求要整合 Legacy 系統時，我們是不是有考量這個 Legacy Sytem 與 Bounded Context 的邊界，還有如果要對接等等的問題。
 
@@ -197,7 +197,7 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 <p align="center">
   <img src="../context-maps/images/realworld-relationship.png?raw=true" width="480px">
 </p>
-<p align="center"><span style="font-style:italic;">Real World Relationship - From Internet</span></p>
+<p align="center">Real World Relationship - From Internet</p>
 
 而這些關係也是可以透過繪製 Context Maps 表達呈現出來的，在 DDD 中把 Context Maps 的關係稱作 Relationship Patterns，並分成「組織關係」以及「整合關係」兩類，以下我們分別介紹。
 
