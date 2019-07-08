@@ -287,13 +287,43 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 
 
 #### 4. 防腐層 ( Anticorruption Layer )
+防腐層 ( Anticorruption Layer ) 縮寫 ACL 是一種隔離下游 Bounded Context 避免因上游 Bounded Context 對外規格的更改而連帶造成己方的內部業務功能影響的保護層，同時也作為一個翻譯層，把上游的 Bounded Context 通用語言轉換成下游 Bounded Context 的通用語言。
 
-#### 5. 開放主機服務 / 發佈語言 ( Open Host Service / Published Language )
+防腐層 ( Anticorruption Layer ) 通常發生在 「共享內核」、「夥伴關係」 或 「客戶 - 供應方」 無法順利的實現運作而導致邊界與邊界間語言不一致或容易因變動造成影響時（ 或是像發生遵奉者的案例 ）所提供給下游 Bounded Context 處理方式。
 
+使用防腐層 ACL ，下游的 Bounded Context 團隊需要根據自己的領域模型建立一個翻譯接口層與請求取得資料集的模型，委託這個翻譯接口層作為代理，來與上游層的外部 Bounded Context 系統互動。讓這個防腐層接口與外部系統交互，便可以使得內部變動與修改降到很低，也不會弄髒內部的領域模型。
 
+<p align="center">
+  <img src="../context-maps/images/context-maps-acl.png?raw=true" width="480px">
+</p>
+<p align="center">Anticorruption Layer ( ACL )<br/>From Patterns, Principles, and Practices of Domain-Driven Design</p>
 
+##### 如何實現防腐層 ( Anticorruption Layer )
 
-## The Example of Relationship of Context Map 
+在技術實現上，會為每個防腐層定義各自的領域服務（ Domain Service ）或資源庫 （ Repository ) 接口來執行，並委託透過 [Adapter](https://en.wikipedia.org/wiki/Adapter_pattern) 建立接口翻譯層，把來自上游的資料集以 Data Transfer Object (DTO) 方式封裝後，在 Adapter 內翻譯成下游己方 Bounded Context 內的領域模型。
+
+#### 5. 開放主機服務 ( Open Host Service ) 與 發佈語言 ( Published Language )
+
+開放主機服務 ( Open Host Service ) 縮寫 OHS，會定義一套協議或接口，讓 Bounded Context 可以被當作一組服務被訪問，這個協議是公開的，使所有下游的 Bounded Context 或外部的系統可以進行整合並使用。並且需要更動時，可以在該現有的協議接口上調整或擴展更新，並更新相對對應的文件訊息讓外部系統，與下游方可以也跟著做調整。
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-ohs.png?raw=true" width="480px">
+</p>
+<p align="center">Open Host Service ( OHS )<br/>From Patterns, Principles, and Practices of Domain-Driven Design</p>
+
+發佈語言 ( Published Language ) 縮寫 PL，作為 Bounded Contexts 之間作為翻譯模型所用的公共語言，當有任何下游或外部系統要使用時，可以讀取此發佈語言的內容並自行轉換成內部使用的通用語言，因此使用該發佈出來的共享語言可以協助完成系統的整合。
+
+OHS 與 PL 通常是上游 Bounded Context 或開放方所使用的整合模式，且 OHS 與 PL 通常會一起搭配使用，使得下游 Bounded Context 能輕易與上游方互動，但為了避免未來上游方的規範更動而影響下游方，所以下游方會使用 ACL 保護自身。
+
+##### 如何實現開放主機服務 ( Open Host Service ) 與 發佈語言 ( Published Language )
+在實現上可能有些人已經從文中猜到 OHS 因為提及協議與接口，不外乎最熟知的便是 Restful HTTP 協議，除此之外也可以透過 RPC 的模式，如 SOAP 協議作為 Bounded Contexts 系統間的互動。
+
+甚至最土法煉鋼的檔案、資料庫也是屬於在 OHS 的協議，這通常也發生在早期的大型系統中採用的形式，如銀行內部會時常看見，當然以現在來說這也是最不推薦的一種模式。
+
+除此之外也可以使用事件驅動 ( Event-Driven ) 的架構，在 DDD 中會藉由領域事件 ( Domain Event ) 發佈事件並以 Message Queue 的消息形式作為協議溝通。
+
+而 PL 的部分最常見的便是透過 JSON Schema 或是 XML Schema 作為發佈語言來表達該 Bounded Context 之間的領域概念，另外也可以採用 HTML 格式以用戶界面的形式呈現，或 Google 提出的 Protobuf 作為資料交換的格式。
+
 
 
 ## 參考資料
