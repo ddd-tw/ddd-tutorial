@@ -211,17 +211,37 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 </p>
 <p align="center">Partnership - From Internet</p>
 
-Partnership 的合作可以涵蓋技術介面、API 接口或共同使用的功能，以便滿足兩個團隊的利益與目標。從組織上的角度來看，可以在團隊之間協調系統部署，以便在需要時部署必要的接口和聯繫點。
+夥伴關係 ( Partnership )的合作可以涵蓋技術介面、API 接口或共同使用的功能，同時需要協調雙方的部署、測試的時機點，以及會影響的範圍，以便滿足兩個團隊的利益與目標。
 
 #### 2. 客戶與供應方 ( Customer － Supplier )
-當負責不同 Bounded Contexts 的團隊之間屬於上游的關係時，
+當負責不同 Bounded Contexts 的團隊之間屬於上游 `U` 與下游 `D`，且上游的 Bounded Context 團隊在與下游的 Bounded Context 團隊合作時，下游團隊可以對上游團隊提出業務合作的需要，但最終的決定仍會由上游開出並制定規格時，此上下游模式便是客戶與供應方 ( Customer － Supplier )。
+
+這時的上游方便被稱作供應方 ( Supplier ) ，而下游方稱作 ( Customer )。在這個情形下，下游團隊需要試著與上游團隊溝通與協調來共同制定計劃與規格，使上游提供下游合適的端點或接口規格，並嘗試把雙方的合作模式轉換成夥伴關係 ( Partnership )，來避免上游團隊開出下游團隊不期望的需求規格。
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-customer-supplier.png?raw=true" width="640px">
+</p>
+<p align="center">Customer － Supplier<br/>From Patterns, Principles, and Practices of Domain-Driven Design</p>
+
 
 #### 3. 尊奉者 ( Conformist )
+一樣的兩個有著彼此各自的 Bounded Contexts 團隊，並且是以上游 `U` 與 下游 `D` 的關係存在，但上游沒有任何動機與理由去需要滿足下游並提供下游需要的規格與合作方式，或是上游已經無法再做出任何改變，在這種情形下，下游只能遵從上游的規範與規則。
+
+會發生此現象通常是上游為一些外部無法干涉到的系統，或是老舊的 Legacy 系統。
+
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-conformist.png?raw=true" width="360px">
+</p>
+<p align="center">Conformist - From Internet</p>
+
+
+
 
 ### 系統整合關係模式
 
 #### 1. 共享內核 ( Shared Kernel )
-當不同的團隊在同一個系統的應用程式中有彼此各自的 Bounded Context 與業務場景，但卻在程式中有許多的領域概念和邏輯有互相交互時，甚至有相同的模型 Model 共用時，便會稱作共享內核 ( Shared Kernel )。
+當不同的團隊在同一個系統的應用程式中有彼此各自的 Bounded Context 與業務場景，但卻在程式中有許多的領域概念和邏輯有互相交集時，甚至有相同的模型 Model 需要共用便會稱作共享內核 ( Shared Kernel )。
 
 如此下圖顯示 ERP 系統包含共享 Employee Model 的工資表 ( Payroll ) Context 與人力資源 ( Human Resource ) Context，便是共享內核 ( Shared Kernel )。
 
@@ -230,13 +250,11 @@ Partnership 的合作可以涵蓋技術介面、API 接口或共同使用的功�
 </p>
 <p align="center">Shared Kernel<br/>From Patterns, Principles, and Practices of Domain-Driven Design</p>
 
-在共享內核 ( Shared Kernel ) 的模式下會需要共享一部分模型 Models 來指定一個顯示的邊界，並且在沒有和其他團隊協調的情況下，是不能改變其共享內核 ( Shared Kernel ) 模型與程式碼。
+在共享內核 ( Shared Kernel ) 的模式下會需要共享一部分模型 Models 來指定一個顯示的邊界，並且在沒有和其他團隊協調的情況下，是不能改變其共享內核 ( Shared Kernel ) 模型與程式碼，因為隨時有可能造成另一方出錯，進而使整個系統 Crash，並且部署、測試與更新都可能會影響另一方。
 
-而這樣的模型和程式碼的共享將產生一種緊密的依賴關係，不一定比較好。那你可能會問這樣什麼時候適合使用共享內核呢？ 
+因此這樣的模型和程式碼的共享將產生一種緊密的依賴關係，不一定比較好。那你可能會問這樣什麼時候適合使用共享內核呢？ 如果在做戰略設計時發現同一個子域 ( Sub-Domain ) 中有兩個 Bounded Contexts 時，且初期業務場景仍不明確，可以先採用此種模式來開發。
 
-如果在做戰略設計時發現同一個子域 ( Sub-Domain ) 中有兩個 Bounded Contexts 時，且初期業務場景仍不明確，可以先採用此種模式來開發。
-
-但當團隊在兩個 Bounded Contexts 之間採用共享內核 ( Shared Kernel ) 後，則會建議團隊以夥伴關係 ( Partnership ) 來協作與執行，未來若發現業務明確且複雜時，可以再以共享內核的模型邊界拆分出去。
+但當團隊在兩個 Bounded Contexts 之間採用共享內核 ( Shared Kernel ) 後，則會建議團隊以夥伴關係 ( Partnership ) 來協作與執行，讓彼此有好的合作與目標，未來若發現業務明確且複雜時，可以再以共享內核的模型邊界拆分出去。
 
 
 
