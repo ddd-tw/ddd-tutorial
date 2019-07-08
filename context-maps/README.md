@@ -229,14 +229,10 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 
 會發生此現象通常是上游為一些外部無法干涉到的系統，或是老舊的 Legacy 系統。
 
-
 <p align="center">
   <img src="../context-maps/images/context-maps-conformist.png?raw=true" width="360px">
 </p>
 <p align="center">Conformist - From Internet</p>
-
-
-
 
 ### 系統整合關係模式
 
@@ -256,6 +252,43 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 
 但當團隊在兩個 Bounded Contexts 之間採用共享內核 ( Shared Kernel ) 後，則會建議團隊以夥伴關係 ( Partnership ) 來協作與執行，讓彼此有好的合作與目標，未來若發現業務明確且複雜時，可以再以共享內核的模型邊界拆分出去。
 
+#### 2. 各行其道 ( Separate Way )
+如果由於技術複雜性或組織的團隊合作複雜性導致 Bounded Contexts 之間的整合的成本太高，或如果確定兩套系統之間沒有顯著的關係或是需求時，則可以做出決定，兩個 Bounded Contexts 之間不做整合並完全解耦。
+
+讓雙方的團隊可以聚焦在自己的 Bounded Context 與業務場景與功能，並尋找其他方法解決問題，例如各自在自己的 Bounded Context 建立屬於自己的特殊解決方案。這樣的情形在 Context Maps 中被稱作各行其道 ( Separate Way )。
+
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-separate-way.png?raw=true" width="360px">
+</p>
+<p align="center">Separate way - From Internet</p>
+
+
+#### 3. 大泥球 ( Big Ball of Mud )
+大泥球 ( Big Ball of Mud )，簡稱 BBoM 是指一個單體系統 ( Monolithic System ) 中混雜了非常多邊界模糊的 Model，並且有許多業務邊界可能在該單體系統裡重疊，難以看清業務需求與功能的全貌，甚至難以拆解。
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-bbom.png?raw=true" width="480px">
+</p>
+<p align="center">Big Ball of Mud - From Internet</p>
+
+
+另外這樣 BBoM 情形非常容易發生在老舊且許多時間沒有在維護，經歷過許多代的功能添加，且沒有人能夠裡清楚內部業務場景或全部功能的 Legacy 系統。
+
+要處理大泥球的現象需要透過測試保護、重構不斷的漸漸調整與拆解，並去逐漸理解找其中的領域關係與業務場景，找出 Bounded Contexts，但是切記不要一次就想要解決所有的問題，雃是要一小塊一小塊的處理，從一個 Bounded Context 再到下一個 Bounded Context，並為各個系統繪製邊界。
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-eat-an-elephant.png?raw=true" width="480px">
+</p>
+<p align="center">Eat an Elephant - From InfoQ : Rethinking Legacy and Monolithic Systems</p>
+
+
+另外非常推薦觀看 InfoQ 上一篇 iDDD 作者 Vaughn Vernon 分享的 [Rethinking Legacy and Monolithic Systems](https://www.infoq.com/presentations/monolith-legacy-rethinking/) 內容，會一步步的告知你如何處理 BBoM。
+
+
+#### 4. 防腐層 ( Anticorruption Layer )
+
+#### 5. 開放主機服務 / 發佈語言 ( Open Host Service / Published Language )
 
 
 
