@@ -201,9 +201,7 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 
 而這些關係也是可以透過繪製 Context Maps 表達呈現出來的，在 DDD 中把常見的幾種 Context Maps 關係稱作關係模式 ( Relationship Patterns )，這些關係模式包含了組織協作關係以及系統整合關係，以下我們分別介紹。
 
-### 組織協作關係模式
-
-#### 1. 夥伴關係 ( Partnership )
+### 1. 組織協關係模式 - 夥伴關係 ( Partnership )
 當兩個團隊彼此負責不同的 Bounded Contexts 與各自的業務場景，但在會彼此業務相連交互的場景需求上願意一起互相討論溝通協助，一起朝相同的交付目標前進，並制訂出一個雙方可行的開發方案與系統整合管理，這個現場就會稱做夥伴關係 ( Partnership )。因為雙方是平等關係、相同的地位，因此並**沒有區分上游與下游的關係**。
 
 <p align="center">
@@ -213,7 +211,7 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 
 夥伴關係 ( Partnership )的合作可以涵蓋技術介面、API 接口或共同使用的功能，同時需要協調雙方的部署、測試的時機點，以及會影響的範圍，以便滿足兩個團隊的利益與目標。
 
-#### 2. 客戶與供應方 ( Customer － Supplier )
+### 2. 組織關係模式 - 客戶與供應方 ( Customer － Supplier )
 當負責不同 Bounded Contexts 的團隊之間屬於上游 `U` 與下游 `D`，且上游的 Bounded Context 團隊在與下游的 Bounded Context 團隊合作時，下游團隊可以對上游團隊提出業務合作的需要，但最終的決定仍會由上游開出並制定規格時，此上下游模式便是客戶與供應方 ( Customer － Supplier )。
 
 這時的上游方便被稱作供應方 ( Supplier ) ，而下游方稱作 ( Customer )。在這個情形下，下游團隊需要試著與上游團隊溝通與協調來共同制定計劃與規格，使上游提供下游合適的端點或接口規格，並嘗試把雙方的合作模式轉換成夥伴關係 ( Partnership )，來避免上游團隊開出下游團隊不期望的需求規格。
@@ -224,7 +222,7 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 <p align="center">Customer － Supplier<br/>From Patterns, Principles, and Practices of Domain-Driven Design</p>
 
 
-#### 3. 尊奉者 ( Conformist )
+### 3. 組織關係模式 - 尊奉者 ( Conformist )
 一樣的兩個有著彼此各自的 Bounded Contexts 團隊，並且是以上游 `U` 與 下游 `D` 的關係存在，但上游沒有任何動機與理由去需要滿足下游並提供下游需要的規格與合作方式，或是上游已經無法再做出任何改變，在這種情形下，下游只能遵從上游的規範與規則。
 
 會發生此現象通常是上游為一些外部無法干涉到的系統，或是老舊的 Legacy 系統。
@@ -234,9 +232,7 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 </p>
 <p align="center">Conformist - From Internet</p>
 
-### 系統整合關係模式
-
-#### 1. 共享內核 ( Shared Kernel )
+### 1. 整合關係模式 - 共享內核 ( Shared Kernel )
 當不同的團隊在同一個系統的應用程式中有彼此各自的 Bounded Context 與業務場景，但卻在程式中有許多的領域概念和邏輯有互相交集時，甚至有相同的模型 Model 需要共用便會稱作共享內核 ( Shared Kernel )。
 
 如此下圖顯示 ERP 系統包含共享 Employee Model 的工資表 ( Payroll ) Context 與人力資源 ( Human Resource ) Context，便是共享內核 ( Shared Kernel )。
@@ -252,7 +248,7 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 
 但當團隊在兩個 Bounded Contexts 之間採用共享內核 ( Shared Kernel ) 後，則會建議團隊以夥伴關係 ( Partnership ) 來協作與執行，讓彼此有好的合作與目標，未來若發現業務明確且複雜時，可以再以共享內核的模型邊界拆分出去。
 
-#### 2. 各行其道 ( Separate Way )
+### 2. 整合關係模式 - 各行其道 ( Separate Way )
 如果由於技術複雜性或組織的團隊合作複雜性導致 Bounded Contexts 之間的整合的成本太高，或如果確定兩套系統之間沒有顯著的關係或是需求時，則可以做出決定，兩個 Bounded Contexts 之間不做整合並完全解耦。
 
 讓雙方的團隊可以聚焦在自己的 Bounded Context 與業務場景與功能，並尋找其他方法解決問題，例如各自在自己的 Bounded Context 建立屬於自己的特殊解決方案。這樣的情形在 Context Maps 中被稱作各行其道 ( Separate Way )。
@@ -264,7 +260,7 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 <p align="center">Separate way - From Internet</p>
 
 
-#### 3. 大泥球 ( Big Ball of Mud )
+### 3. 整合關係模式 - 大泥球 ( Big Ball of Mud )
 大泥球 ( Big Ball of Mud )，簡稱 BBoM 是指一個單體系統 ( Monolithic System ) 中混雜了非常多邊界模糊的 Model，並且有許多業務邊界可能在該單體系統裡重疊，難以看清業務需求與功能的全貌，甚至難以拆解。
 
 <p align="center">
@@ -286,7 +282,7 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 另外非常推薦觀看 InfoQ 上一篇 iDDD 作者 Vaughn Vernon 分享的 [Rethinking Legacy and Monolithic Systems](https://www.infoq.com/presentations/monolith-legacy-rethinking/) 內容，會一步步的告知你如何處理 BBoM。
 
 
-#### 4. 防腐層 ( Anticorruption Layer )
+### 4. 整合關係模式 - 防腐層 ( Anticorruption Layer )
 防腐層 ( Anticorruption Layer ) 縮寫 ACL 是一種隔離下游 Bounded Context 避免因上游 Bounded Context 對外規格的更改而連帶造成己方的內部業務功能影響的保護層，同時也作為一個翻譯層，把上游的 Bounded Context 通用語言轉換成下游 Bounded Context 的通用語言。
 
 防腐層 ( Anticorruption Layer ) 通常發生在 「共享內核」、「夥伴關係」 或 「客戶 - 供應方」 無法順利的實現運作而導致邊界與邊界間語言不一致或容易因變動造成影響時（ 或是像發生遵奉者的案例 ）所提供給下游 Bounded Context 處理方式。
@@ -298,12 +294,11 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 </p>
 <p align="center">Anticorruption Layer ( ACL )<br/>From Patterns, Principles, and Practices of Domain-Driven Design</p>
 
-##### 如何實現防腐層 ( Anticorruption Layer )
+#### 如何實現防腐層 ACL
 
 在技術實現上，會為每個防腐層定義各自的領域服務（ Domain Service ）或資源庫 （ Repository ) 接口來執行，並委託透過 [Adapter](https://en.wikipedia.org/wiki/Adapter_pattern) 建立接口翻譯層，把來自上游的資料集以 Data Transfer Object (DTO) 方式封裝後，在 Adapter 內翻譯成下游己方 Bounded Context 內的領域模型。
 
-#### 5. 開放主機服務 ( Open Host Service ) 與 發佈語言 ( Published Language )
-
+### 5. 整合關係模式 - 開放主機服務 ( Open Host Service ) 與 發佈語言 ( Published Language )
 開放主機服務 ( Open Host Service ) 縮寫 OHS，會定義一套協議或接口，讓 Bounded Context 可以被當作一組服務被訪問，這個協議是公開的，使所有下游的 Bounded Context 或外部的系統可以進行整合並使用。並且需要更動時，可以在該現有的協議接口上調整或擴展更新，並更新相對對應的文件訊息讓外部系統，與下游方可以也跟著做調整。
 
 <p align="center">
@@ -315,7 +310,7 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 
 OHS 與 PL 通常是上游 Bounded Context 或開放方所使用的整合模式，且 OHS 與 PL 通常會一起搭配使用，使得下游 Bounded Context 能輕易與上游方互動，但為了避免未來上游方的規範更動而影響下游方，所以下游方會使用 ACL 保護自身。
 
-##### 如何實現開放主機服務 ( Open Host Service ) 與 發佈語言 ( Published Language )
+#### 如何實現開放主機服務 OHS 與發佈語言 PL
 在實現上可能有些人已經從文中猜到 OHS 因為提及協議與接口，不外乎最熟知的便是 Restful HTTP 協議，除此之外也可以透過 RPC 的模式，如 SOAP 協議作為 Bounded Contexts 系統間的互動。
 
 甚至最土法煉鋼的檔案、資料庫也是屬於在 OHS 的協議，這通常也發生在早期的大型系統中採用的形式，如銀行內部會時常看見，當然以現在來說這也是最不推薦的一種模式。
