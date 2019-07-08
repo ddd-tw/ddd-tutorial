@@ -20,7 +20,7 @@ DDD 是以領域為驅動的一套設計方法論，所謂的領域 ( Domain ) �
 
 DDD 是一套模式語言 ( Pattern Language )，就像文法與句子一樣， DDD 中的每一個概念皆很重要，一層疊一層，牽一髮動全身。除此之外 DDD 並非是一個獨立的設計方法論，其實 DDD 非常適合與前述的 User Story Mapping、TDD、BDD 做結合使用，也非常適合與目前常見的架構做整合，如三層式架構、SOA、事件驅動架構、六角架構、洋蔥架構，最近 Uncle Bob 提出的 Clean Architecture 。
 
-這也是為何 DDD 從 2001 提出持續到現在依然在全球活躍且辦了 10 多屆 Conference 的原因，因為他為許多企業解決的艱難的大型業務場景問題，同時 DDD 中的 Bounded Context 為單體系統 如何走向 Microservices 帶來了一帖良藥與配方，從一個大型系統的業務場景需求中，找出每個齒輪般的業務邊界，透過這些邊界幫助我們減少各個系統中的耦合性，進而以這些邊界拆分成各個 Microservices 。
+這也是為何 DDD 從 2003 提出持續到現在依然在全球活躍且辦了 10 多屆 Conference 的原因，因為他為許多企業解決的艱難的大型業務場景問題，同時 DDD 中的 Bounded Context 為單體系統 如何走向 Microservices 帶來了一帖良藥與配方，從一個大型系統的業務場景需求中，找出每個齒輪般的業務邊界，透過這些邊界幫助我們減少各個系統中的耦合性，進而以這些邊界拆分成各個 Microservices 。
 
 
 
