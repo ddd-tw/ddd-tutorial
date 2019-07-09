@@ -317,6 +317,19 @@ OHS 與 PL 通常是上游 Bounded Context 或開放方所使用的整合模式�
 
 <br/>
 
+### 把關係模式使用在 Context Maps 中繪製
+在介紹了組織關係模式與整合關係模式後，接著我們來看一下繪製上了的關係如何表示，以下為 Implementing Domain-Driven Design 書中的範例，這是ㄧ個團隊協作專用的敏捷專案管理系統，該系統的業務場景三個 Bounded Context 中表示了彼此的上下游關係，因為 Identity and Access Context 只是提供身份驗證與角色權限的 Generic Sub-Domain，所以會在最上游透過 OHS/PL 開放接口給其他的 Bounded Context 使用。
+
+而 Collaboration Context 是 Support Sub-Domain ，提供給 Agile Project Management Context 會需要使用該 一個處理團隊管理與協作服務，來完成 Agile Project Management Context 的團隊的敏捷專案管理業務場景與服務，所以相對的 Agile Project Management Context 需要與另外兩個 Bounded Context 互動並使用對方的服務來滿足自身服務的運作。
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-add-relationship-pattern.png?raw=true" width="480px">
+</p>
+<p align="center">Add ACL and OHS/PL to imply relationship<br/>From Implementing Domain-Driven Design</p>
+
+
+<br/>
+
 ## 一起來試著練習繪製 Context Maps
 坐而言不如起而行，輪到你來試著練習繪製 Context Maps 了，這是一個保險公司的產品服務，在這個服務的業務場景中，有著六個 Bounded Context 需要分別完成，以下分別簡述：
 
@@ -345,10 +358,9 @@ OHS 與 PL 通常是上游 Bounded Context 或開放方所使用的整合模式�
 <br/>
 
 ## 更近一步的認識 Context Maps 的實現面
-在看完例子與小試身手練習後，接下來我們將要更進一步，針對最常被使用到的防腐層 ( ACL ) 以及開放主機服務 ( OHS ) 與 發佈語言 ( PL ) 來介紹一下在實現上使次用什麼技術實現。
+在看完範例與小試身手練習後，接下來我們將要更進一步，針對最常被使用到的防腐層 ( ACL ) 以及開放主機服務 ( OHS ) 與 發佈語言 ( PL ) 來介紹一下在實現上使次用什麼技術實現。
 
 ### 實現防腐層 ( ACL ) 的方式
-
 在技術實現上，會為每個防腐層定義各自的領域服務（ Domain Service ）或資源庫（ Repository ) 接口來執行，並委託透過 [Adapter](https://en.wikipedia.org/wiki/Adapter_pattern) 建立接口翻譯層，把來自上游的資料集以 Data Transfer Object (DTO) 方式封裝後，在 Adapter 內翻譯成下游己方 Bounded Context 內的領域模型。
 
 如下圖是 Implementing Domain-Driven Design 書中的例子，你會看到這裡有兩個 Domain Service ，並且透過這個 Domain Service 去委託 Adapter 處理與外部的 Collaboration Bounded Context 調用資源回來。
