@@ -3,6 +3,8 @@ Context Map 是屬於在 Domain-Driven Design ( 以下簡稱 DDD ) 中的戰略�
 
 不過在介紹 Domain Driven Design 中的 Context Map 之前，我們會需要先稍稍回顧一下 Domain 與 Bounded Context 並透過 Bounded Context 來點出為何我們需要 Context Map 以及他的重要性。
 
+<br/>
+
 ## 回顧一下領域 ( Domain ) 以及限界上下文 ( Bounded Context )
 在 Bounded Context 中提到，當我們面對到業務需求時，往往要把這些抽且描述性的業務需求轉化成程式碼，過程中是非常不容易的，而且因為這些業務需求往往都是 Case By Case，每個業務需求都有自己 Buniess Know How，所以即便我們知曉了許多編碼的技巧、Pattern、架構風格，但是往往要把需求轉化並對應相容進去不是一件簡單事，甚至會出現很多疑問，並聽到過有一些討論像是：「我的 Order 到底要放在哪裡？」、「雖然知道要高內聚、低耦合，但是我這個例子中的類別，到底有想些要解偶，哪些要內聚？」...等等，也就會出現像是下面這張圖的情狀：
 
@@ -156,6 +158,8 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 
 不過 Context Maps 並不是一種企業架構，也不是系統拓墣圖。我們可以這麼定位它 — *Context Maps 是一種高層次抽象的架構分析，能指出整合上的瓶頸、體現出組織的動態，並幫助我們識別出有礙項目進展的管理問題。*
 
+<br/>
+
 ### 初步繪製的 Context Maps
 
 而一個初步簡易的 Context Maps 會如下圖，在圖中你會看見 Context Maps 彼此之間透過線條連起來，並且標明了 `U` 跟 `D`，這個 `U` 跟 `D` 分別代表了 **上游 ( Upstream )** 與 **下游 ( Downstream )**，也就是我們可以透過上游/下游來表達出各個 Bounded Context 之間的初步關係，這些關係也反映出了團隊以及業務場景之間的協作關係，當然還有建模之後在系統面上互動的關係。
@@ -170,6 +174,8 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 而所謂的 **下游 ( Downstream )** 表示這個 Bounded Context 與會對於其他的 Bounded Context 在業務場景上是一個需求方，他需要仰賴其他的上游 Bounded Context 來使自己的業務場景與服務運作正常，也可能伴隨著上游出了狀況，下游也出了狀況；如果從系統面來想，他就是一個需要請求外部服、API 的系統；若從團隊協作上思考，該下游團隊可能需要時常配合上游團隊，也可能受上游團隊的協作與溝通影響自身開發與交付的時程。
 
 目前這個標示上下游的 Context Maps 方式雖然只是一個初步的畫法，但是你會發現只是短短的繪製出這些圖示，便能進一步讓團隊與領域專家在思考與討論業務需求時，可以看到更多的面向，發現更多潛在的隱藏協作細節與成本，或是釐清可能有誤的解讀，同時可以提少準備預防可能的問題發生。
+
+<br/>
 
 ## 繪製 Context Maps 的一些小細節
 此外，在繪製 Context Maps 時有一些需要注意的小地方與一些 Tips，透過這些細節與建議，除了能幫助團隊在繪製 Context Maps 時有正確的觀念外，也能更加完善。
@@ -188,6 +194,8 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 在討論、繪製或更新 Context Maps 的過程中，可以各次的訊息與細節都共同放在相同的位置保存或提供團隊觀看，你可以選擇採用文件化、並把討論中所用到的素材整理擺放到雲端保存，如 Wiki，而這樣的形式非常適合地理位置分散或遠端的團隊模式。
 
 不過若團隊能聚在一起的話，更鼓勵採用如看板方法、User Story Mapping 方式把 Context Maps 與其細節訊息用文字、便利貼的形式共同貼在白板或牆上，方便團隊隨時能共觀看討論，也能避免沈入系統的文件大海中，找詢問文件的步驟越多，總容易使人懶得去翻開。
+
+<br/>
 
 ## 挖掘 Context Maps 中更細緻的關係
 在介紹 Context Maps 以及繪製 Context Maps 時，我們提到了上游 `U` 與下游 `D` 能夠為描述並發現每個 Bounded Contexts 彼此之間的關係，這些關係反映出了團隊以及業務場景之間的協作關係，還有建模之後在系統面上互動的關係。
@@ -308,6 +316,20 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 OHS 與 PL 通常是上游 Bounded Context 或開放方所使用的整合模式，且 OHS 與 PL 通常會一起搭配使用，使得下游 Bounded Context 能輕易與上游方互動，但為了避免未來上游方的規範更動而影響下游方，所以下游方會使用 ACL 保護自身。
 
 <br/>
+
+### 把關係模式使用在 Context Maps 中繪製
+在介紹了組織關係模式與整合關係模式後，接著我們來看一下繪製上了的關係如何表示，以下為 Implementing Domain-Driven Design 書中的範例，這是ㄧ個團隊協作專用的敏捷專案管理系統，該系統的業務場景三個 Bounded Context 中表示了彼此的上下游關係，因為 Identity and Access Context 只是提供身份驗證與角色權限的 Generic Sub-Domain，所以會在最上游透過 OHS/PL 開放接口給其他的 Bounded Context 使用。
+
+而 Collaboration Context 是 Support Sub-Domain ，提供給 Agile Project Management Context 會需要使用該 一個處理團隊管理與協作服務，來完成 Agile Project Management Context 的團隊的敏捷專案管理業務場景與服務，所以相對的 Agile Project Management Context 需要與另外兩個 Bounded Context 互動並使用對方的服務來滿足自身服務的運作。
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-add-relationship-pattern.png?raw=true" width="480px">
+</p>
+<p align="center">Add ACL and OHS/PL to imply relationship<br/>From Implementing Domain-Driven Design</p>
+
+
+<br/>
+
 ## 一起來試著練習繪製 Context Maps
 坐而言不如起而行，輪到你來試著練習繪製 Context Maps 了，這是一個保險公司的產品服務，在這個服務的業務場景中，有著六個 Bounded Context 需要分別完成，以下分別簡述：
 
@@ -334,11 +356,11 @@ OHS 與 PL 通常是上游 Bounded Context 或開放方所使用的整合模式�
 不過，如果想要得知該練習的範例結果，可以點擊這個 [連結](https://github.com/ContextMapper/context-mapper-examples/tree/master/src/main/resources/insurance-example) 來參考看看。
 
 <br/>
+
 ## 更近一步的認識 Context Maps 的實現面
-在看完例子與小試身手練習後，接下來我們將要更進一步，針對最常被使用到的防腐層 ( ACL ) 以及開放主機服務 ( OHS ) 與 發佈語言 ( PL ) 來介紹一下在實現上使次用什麼技術實現。
+在看完範例與小試身手練習後，接下來我們將要更進一步，針對最常被使用到的防腐層 ( ACL ) 以及開放主機服務 ( OHS ) 與 發佈語言 ( PL ) 來介紹一下在實現上使次用什麼技術實現。
 
 ### 實現防腐層 ( ACL ) 的方式
-
 在技術實現上，會為每個防腐層定義各自的領域服務（ Domain Service ）或資源庫（ Repository ) 接口來執行，並委託透過 [Adapter](https://en.wikipedia.org/wiki/Adapter_pattern) 建立接口翻譯層，把來自上游的資料集以 Data Transfer Object (DTO) 方式封裝後，在 Adapter 內翻譯成下游己方 Bounded Context 內的領域模型。
 
 如下圖是 Implementing Domain-Driven Design 書中的例子，你會看到這裡有兩個 Domain Service ，並且透過這個 Domain Service 去委託 Adapter 處理與外部的 Collaboration Bounded Context 調用資源回來。
@@ -378,10 +400,13 @@ OHS 與 PL 通常是上游 Bounded Context 或開放方所使用的整合模式�
 </p>
 <p align="center">Event-Driven with Message Queue<br/>From Domain-Driven Design Distilled</p>
  
+ <br/>
+
 ## 小結
 希望透過這篇介紹，能對 Context Maps 有更多的理解，Context Maps 看似抽象單純，但其實這個抽象中卻包含了許多的訊息可以拿來關注。另外 Context Maps 的組織關係模式和整合關係模式，也能幫助團隊在分析 Context Maps 有一個方向來參考。
 如同上述提到的 Context Maps 是一種高層次抽象的架構分析，能指出整合上的瓶頸、體現出組織的動態，並幫助我們識別出有礙項目進展的管理問題。
 
+<br/>
 
 ## 參考資料
 1. Eric Evans. (Aug 2003). Domain-Driven Design: Tackling Complexity in the Heart of Software, Addison-Wesley. https://www.oreilly.com/library/view/domain-driven-design-tackling/0321125215/
