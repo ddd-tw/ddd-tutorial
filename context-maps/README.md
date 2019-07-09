@@ -294,9 +294,6 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 </p>
 <p align="center">Anticorruption Layer ( ACL )<br/>From Patterns, Principles, and Practices of Domain-Driven Design</p>
 
-#### 如何實現防腐層 ACL
-
-在技術實現上，會為每個防腐層定義各自的領域服務（ Domain Service ）或資源庫 （ Repository ) 接口來執行，並委託透過 [Adapter](https://en.wikipedia.org/wiki/Adapter_pattern) 建立接口翻譯層，把來自上游的資料集以 Data Transfer Object (DTO) 方式封裝後，在 Adapter 內翻譯成下游己方 Bounded Context 內的領域模型。
 
 ### 5. 整合關係模式 - 開放主機服務 ( Open Host Service ) 與 發佈語言 ( Published Language )
 開放主機服務 ( Open Host Service ) 縮寫 OHS，會定義一套協議或接口，讓 Bounded Context 可以被當作一組服務被訪問，這個協議是公開的，使所有下游的 Bounded Context 或外部的系統可以進行整合並使用。並且需要更動時，可以在該現有的協議接口上調整或擴展更新，並更新相對對應的文件訊息讓外部系統，與下游方可以也跟著做調整。
@@ -310,17 +307,88 @@ Context Maps 為我們找出 Bounded Context 之間的協作關係，或者可�
 
 OHS 與 PL 通常是上游 Bounded Context 或開放方所使用的整合模式，且 OHS 與 PL 通常會一起搭配使用，使得下游 Bounded Context 能輕易與上游方互動，但為了避免未來上游方的規範更動而影響下游方，所以下游方會使用 ACL 保護自身。
 
-#### 如何實現開放主機服務 OHS 與發佈語言 PL
-在實現上可能有些人已經從文中猜到 OHS 因為提及協議與接口，不外乎最熟知的便是 Restful HTTP 協議，除此之外也可以透過 RPC 的模式，如 SOAP 協議作為 Bounded Contexts 系統間的互動。
+<br/>
+## 一起來試著練習繪製 Context Maps
+坐而言不如起而行，輪到你來試著練習繪製 Context Maps 了，這是一個保險公司的產品服務，在這個服務的業務場景中，有著六個 Bounded Context 需要分別完成，以下分別簡述：
 
-甚至最土法煉鋼的檔案、資料庫也是屬於在 OHS 的協議，這通常也發生在早期的大型系統中採用的形式，如銀行內部會時常看見，當然以現在來說這也是最不推薦的一種模式。
+1. **Customer Management（ 客戶管理 Context )**
+此 Bounded Context 負責管理保險公司客戶 (Customers) 的所有數據。因此它通常是一個核心的 Bounded Context ，許多其他的 Bounded Context 會與它有關聯互動。
 
-除此之外也可以使用事件驅動 ( Event-Driven ) 的架構，在 DDD 中會藉由領域事件 ( Domain Event ) 發佈事件並以 Message Queue 的消息形式作為協議溝通。
+2. **Customer Self-Service Management ( 客戶自助服務管理 Context )**
+此 Bounded Context 為一個 Web 的應用程序，該 Context 允許客戶登錄和更改基本客戶數據記錄，如地址。
 
-而 PL 的部分最常見的便是透過 JSON Schema 或是 XML Schema 作為發佈語言來表達該 Bounded Context 之間的領域概念，另外也可以採用 HTML 格式以用戶界面的形式呈現，或 Google 提出的 Protobuf 作為資料交換的格式。
+3. **Policy Management ( 保單管理 Context )**
+此 Bounded Context 管理客戶的合約 (Contracts) 和保單 (Polices)。它與 Risk Management Context 一起合作，因為它需要客戶的風險相關數據來計算客戶的保單費率。此外，它有一個與 Debt Collection Context 共享的內核。
 
+4. **Debt Collection ( 收帳 Context )**
+此 Bounded Context 依據對應的合約  (Contracts) 和保單 (Polices) 數據來收取帳務，以負責保險公司的財務收入。 
+
+5. **Risk Management ( 風險管理 Context )**
+此 Bounded Context 與 Policy Management Context 密切相關並且會計算影響合約 (Contracts) 與保單 (Polices) 的風險因素。
+
+6. **Printing Context ( 影印 Context )**
+此 Bounded Context 為一個提供給內部其他 Bounded Context 由 API 接口訪問的外部系統。它處理必須影印文件的相關行為，例如影印帳務 (Debit)，保險單 (Polices) 和客戶 (Customers) 的數據資料等。
+
+那麼，現在就來動手繪製看看吧！試著在 30 分鐘內思考或是跟團隊、朋友討論看看，試著理解這個業務場境。另外，這並沒有標準答案，因為每個團隊都有著自己對領域的解讀，也會因為不同的組織與團隊組成，因此其他的 Bounded Context 的關係也會不同。
+
+不過，如果想要得知該練習的範例結果，可以點擊這個 [連結](https://github.com/ContextMapper/context-mapper-examples/tree/master/src/main/resources/insurance-example) 來參考看看。
+
+<br/>
+## 更近一步的認識 Context Maps 的實現面
+在看完例子與小試身手練習後，接下來我們將要更進一步，針對最常被使用到的防腐層 ( ACL ) 以及開放主機服務 ( OHS ) 與 發佈語言 ( PL ) 來介紹一下在實現上使次用什麼技術實現。
+
+### 實現防腐層 ( ACL ) 的方式
+
+在技術實現上，會為每個防腐層定義各自的領域服務（ Domain Service ）或資源庫（ Repository ) 接口來執行，並委託透過 [Adapter](https://en.wikipedia.org/wiki/Adapter_pattern) 建立接口翻譯層，把來自上游的資料集以 Data Transfer Object (DTO) 方式封裝後，在 Adapter 內翻譯成下游己方 Bounded Context 內的領域模型。
+
+如下圖是 Implementing Domain-Driven Design 書中的例子，你會看到這裡有兩個 Domain Service ，並且透過這個 Domain Service 去委託 Adapter 處理與外部的 Collaboration Bounded Context 調用資源回來。
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-acl-implementation.png?raw=true" width="480px">
+</p>
+<p align="center">The Domain Service and Adapter Class Relationship of Anticorruption Layer<br/>Implementing Domain-Driven Design</p>
+
+### 實現開放主機服務 ( OHS ) 與 發佈語言 ( PL ) 的方式
+由於 OHS 與 PL 是一體兩面的，所以我們會放在一起討論。在實現上可能有些人已經從文中猜到 OHS 因為提及協議與 API 接口，所以最能讓我們最先聯想到的，便是現在很常使用的 Restful HTTP 協議，而在 Restful HTTP 的協議中會常被使用 PL 便是 Json Schema。
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-restful-http.png?raw=true" width="480px">
+</p>
+<p align="center">Restful HTTP<br/>From Domain-Driven Design Distilled</p>
+
+
+除此之外也可以透過 RPC 遠程調用方式來作為協議接口，如基於 SOAP 協議的 RPC 方式並搭配 XML Schema 的發佈語言作為 Bounded Contexts 系統間的互動，或是透過 Message 機制交換資料。
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-rpc-soap-xml.png?raw=true" width="480px">
+</p>
+<p align="center">RPC - SOAP/XML <br/>From Domain-Driven Design Distilled</p>
+
+甚至最土法煉鋼的檔案、資料庫也是屬於在 OHS/PL，這通常也發生在早期的大型系統中採用的形式，如銀行內部會時常看見，當然以現在來說這也是最不推薦的一種模式。並且除了上述 OHS 搭配所提到的發布語言形式外，也可以採用 HTML 格式以用戶界面的形式呈現，或 Google 提出的 Protobuf 作為資料交換的格式。
+
+<p align="center">
+  <img src="../context-maps/images/publish-language-protobuf.png?raw=true" width="480px">
+</p>
+<p align="center"><a href="https://developers.google.com/protocol-buffers/docs/overview">Protobuf - From Google Developer Guide</a></p>
+
+也可以透過使用事件驅動 ( Event-Driven ) 架構，在 DDD 中會藉由領域事件 ( Domain Event ) 發佈事件並以 Message Queue 來作為 OHS/PL，如下圖：
+
+<p align="center">
+  <img src="../context-maps/images/context-maps-event-message-queue.png?raw=true" width="480px">
+</p>
+<p align="center">Event-Driven with Message Queue<br/>From Domain-Driven Design Distilled</p>
+ 
+## 小結
+希望透過這篇介紹，能對 Context Maps 有更多的理解，Context Maps 看似抽象單純，但其實這個抽象中卻包含了許多的訊息可以拿來關注。另外 Context Maps 的組織關係模式和整合關係模式，也能幫助團隊在分析 Context Maps 有一個方向來參考。
+如同上述提到的 Context Maps 是一種高層次抽象的架構分析，能指出整合上的瓶頸、體現出組織的動態，並幫助我們識別出有礙項目進展的管理問題。
 
 
 ## 參考資料
-1. [Domain-driven design - Wikipedia](https://en.wikipedia.org/wiki/Domain-driven_design)
-2. [Strategic Domain Driven Design with Context Mapping](https://www.infoq.com/articles/ddd-contextmapping/)
+1. Eric Evans. (Aug 2003). Domain-Driven Design: Tackling Complexity in the Heart of Software, Addison-Wesley. https://www.oreilly.com/library/view/domain-driven-design-tackling/0321125215/
+2. Vaughn Vernon. (Feb, 2013). Implementing Domain Driven Design, Addison-Wesley. https://www.oreilly.com/library/view/implementing-domain-driven-design/9780133039900/
+3. Scott Millett & Nick Tune. (Apr 20, 2015). From Patterns, Principles, and Practices of Domain-Driven Design https://www.amazon.com/Patterns-Principles-Practices-Domain-Driven-Design/dp/1118714709
+4. Martin Fowler. (Jan 15, 2014). "Bounded Context". https://martinfowler.com/bliki/BoundedContext.html
+5. Domain-driven design. Wikipedia. https://en.wikipedia.org/wiki/Domain-driven_design
+6. Vernon Vaughn. (Jun 16, 2016). “Ch. 4, Stragetic Design with Context Mapping.” Domain-Driven Design Distilled, Addison-Wesley.  https://www.amazon.com/Domain-Driven-Design-Distilled-Vaughn-Vernon/dp/0134434420
+7. Alberto Brandolini. (Nov 25, 2009) Strategic Domain Driven Design with Context Mapping. InfoQ. https://www.infoq.com/articles/ddd-contextmapping/
+8. Developer Guide. Protocol Buffers, Google. https://developers.google.com/protocol-buffers/docs/overview)
