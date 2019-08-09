@@ -12,7 +12,7 @@
 
 我們首先要新增一個 businessPriorityTotals 方法來計算權重分數，但此時我們將會陷入兩難。
 
-1. 將方法放在 Product 中看似合理，實際上因為 Product 只參考了 Product ID 而不直接攜帶 Blacklog Item，我們必需從外部傳入 Backlog Item 到 Product 中做計算，這有可能導致外部需要知道如何取得 Backlog Item 的細節
+1. 將方法放在 Product 中看似合理，實際上因為 Product 只參考了 Product ID 而不直接攜帶 Backlog Item，我們必需從外部傳入 Backlog Item 到 Product 中做計算，這有可能導致外部需要知道如何取得 Backlog Item 的細節
 2. Backlog Item 需要與 Product 放在一起才有意義，這顯得直接將計算方法放在 Backlog Item 並不那麼合適
 
 我們在此時應該導入一個「領域服務(Domain Service)」來緩解這樣的囧境。
@@ -89,6 +89,8 @@ Domain Service 不是 "銀子彈"，過度的使用 Domain Service，將會很�
 
 ## 小結
 本章我們學習到在領域層(Doamin Layer)內除了 Entity 及 Value Object 以外的另一個舉足輕重的元素「領域服務(Domain Service)」有了這三個重要元素，我們便可以在領域內的設計上更靈活、豐富的安排領域物件之間的相對關係。
+
+<br>
 
 ## 參考資料
 
