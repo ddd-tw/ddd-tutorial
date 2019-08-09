@@ -19,7 +19,7 @@
 
 <br>
 
-## 領域服務(Domain Service)的特性
+## 領域服務(Domain Service)的特性
 現在讓我們來檢視一個 Domain Service 應該要有哪些特性
 
 ### 無狀態(Stateless)
@@ -62,7 +62,7 @@
 <br>
 
 ## 關於架構
-在「Clean Architecture」或是「洋蔥式架構」中，Domain Service 存在的方式以及位置有以下兩種
+在「Clean Architecture」或是「洋蔥式架構」中，Domain Service 存在的方式以及位置有以下兩種
 
 ### 實例(Instance)
 如果行為沒有與外部溝通或是多型的需求，我們可以直接將 Domain Service 的實作直接定義在領域層(Domain Layer)中供外部調用
@@ -89,6 +89,8 @@ Domain Service 不是 "銀子彈"，過度的使用 Domain Service，將會很�
 
 ## 小結
 本章我們學習到在領域層(Doamin Layer)內除了 Entity 及 Value Object 以外的另一個舉足輕重的元素「領域服務(Domain Service)」有了這三個重要元素，我們便可以在領域內的設計上更靈活、豐富的安排領域物件之間的相對關係。
+
+<br>
 
 ## 參考資料
 
